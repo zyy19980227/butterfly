@@ -1,0 +1,28 @@
+body{align-items: center;display: flex;justify-content: center;}
+#total{
+  /*调节total的宽高来调节蝴蝶大小*/
+  width: 300px;
+  height: 300px; 
+  align-items: center;display: flex;justify-content: center;perspective-origin: 50% 50%;/*视角*/ margin-top: 200px;}
+/*以下为蝴蝶样式*/
+.butterfly {animation: body 250ms cubic-bezier(0.48, 0.01, 0.54, 1) infinite;animation-direction: alternate;/*偶数次反向播放动画*/position: relative;transform-style: preserve-3d;transform: rotateX(50deg) rotateY(20deg) rotateZ(-50deg) translateY(0px);width: 7.5%;height: 27.5%;}
+.butterfly::before {background: #362c13;border-radius: 50%;content: '';display: block;width: 66.7%;height: 100%;left: 50%;margin-left: -33.3%;position: absolute;top: -22%;transform: rotatey(100deg);z-index: 2;}
+.wing {background: none;height: 3.33%;width: 3.33%;display: block;opacity: 0.7;position: absolute;}
+.wing:first-child {animation: leftwing 250ms cubic-bezier(0.48, 0.01, 0.54, 1) infinite;animation-direction: alternate;transform: rotateY(-20deg);transform-origin: 700% 50%;z-index: 3;}
+.wing:last-child {animation: rightwing 250ms cubic-bezier(0.48, 0.01, 0.54, 1) infinite;animation-direction: alternate;right: 0;transform: rotateY(200deg);z-index: 1;}
+.wing .bit{background: rgb(167, 10, 83);border-radius: 50%;position: absolute;right: 0;transform-origin: 100% 50%;}
+.wing .bit:first-child {height: 2000%;top: 300%;transform: rotateZ(40deg);width: 14000%;}
+.wing .bit:last-child {height: 1570%;transform: rotateZ(-40deg);width: 10000%;}
+/*以下为动画变化*/
+@keyframes body {
+  0% {transform: rotateX(50deg) rotateY(20deg) rotateZ(-50deg) translateZ(0px);}
+  100% {transform: rotateX(50deg) rotateY(20deg) rotateZ(-50deg) translateZ(-3px);}
+}
+@keyframes leftwing {
+  0% {transform: rotateY(-20deg);}
+  100% {transform: rotateY(90deg);}
+}
+@keyframes rightwing {
+  0% {transform: rotateY(200deg);}
+  100% {transform: rotateY(90deg);}
+}
